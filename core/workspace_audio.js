@@ -20,7 +20,7 @@
 
 /**
  * @fileoverview Object in charge of loading, storing, and playing audio for a
- *     workspace.
+ *               workspace.
  * @author fenichel@google.com (Rachel Fenichel)
  */
 'use strict';
@@ -33,30 +33,35 @@ goog.require('Blockly.utils.userAgent');
 
 /**
  * Class for loading, storing, and playing audio for a workspace.
- * @param {Blockly.WorkspaceSvg} parentWorkspace The parent of the workspace
- *     this audio object belongs to, or null.
+ * 
+ * @param {Blockly.WorkspaceSvg}
+ *            parentWorkspace The parent of the workspace this audio object
+ *            belongs to, or null.
  * @constructor
  */
 Blockly.WorkspaceAudio = function(parentWorkspace) {
 
   /**
-   * The parent of the workspace this object belongs to, or null.  May be
-   * checked for sounds that this object can't find.
-   * @type {Blockly.WorkspaceSvg}
-   * @private
-   */
+     * The parent of the workspace this object belongs to, or null. May be
+     * checked for sounds that this object can't find.
+     * 
+     * @type {Blockly.WorkspaceSvg}
+     * @private
+     */
   this.parentWorkspace_ = parentWorkspace;
 
   /**
-   * Database of pre-loaded sounds.
-   * @private
-   * @const
-   */
+     * Database of pre-loaded sounds.
+     * 
+     * @private
+     * @const
+     */
   this.SOUNDS_ = Object.create(null);
 };
 
 /**
  * Time that the last sound was played.
+ * 
  * @type {Date}
  * @private
  */
@@ -64,6 +69,7 @@ Blockly.WorkspaceAudio.prototype.lastSound_ = null;
 
 /**
  * Dispose of this audio manager.
+ * 
  * @package
  */
 Blockly.WorkspaceAudio.prototype.dispose = function() {
@@ -72,11 +78,15 @@ Blockly.WorkspaceAudio.prototype.dispose = function() {
 };
 
 /**
- * Load an audio file.  Cache it, ready for instantaneous playing.
- * @param {!Array.<string>} filenames List of file types in decreasing order of
- *   preference (i.e. increasing size).  E.g. ['media/go.mp3', 'media/go.wav']
- *   Filenames include path from Blockly's root.  File extensions matter.
- * @param {string} name Name of sound.
+ * Load an audio file. Cache it, ready for instantaneous playing.
+ * 
+ * @param {!Array.
+ *            <string>} filenames List of file types in decreasing order of
+ *            preference (i.e. increasing size). E.g. ['media/go.mp3',
+ *            'media/go.wav'] Filenames include path from Blockly's root. File
+ *            extensions matter.
+ * @param {string}
+ *            name Name of sound.
  */
 Blockly.WorkspaceAudio.prototype.load = function(filenames, name) {
   if (!filenames.length) {
@@ -106,6 +116,7 @@ Blockly.WorkspaceAudio.prototype.load = function(filenames, name) {
 
 /**
  * Preload all the audio files so that they play quickly when asked for.
+ * 
  * @package
  */
 Blockly.WorkspaceAudio.prototype.preload = function() {
@@ -123,10 +134,13 @@ Blockly.WorkspaceAudio.prototype.preload = function() {
 };
 
 /**
- * Play a named sound at specified volume.  If volume is not specified,
- * use full volume (1).
- * @param {string} name Name of sound.
- * @param {number=} opt_volume Volume of sound (0-1).
+ * Play a named sound at specified volume. If volume is not specified, use full
+ * volume (1).
+ * 
+ * @param {string}
+ *            name Name of sound.
+ * @param {number=}
+ *            opt_volume Volume of sound (0-1).
  */
 Blockly.WorkspaceAudio.prototype.play = function(name, opt_volume) {
   var sound = this.SOUNDS_[name];

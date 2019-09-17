@@ -26,12 +26,12 @@
 
 /**
  * A mapping of block type names to block prototype objects.
+ * 
  * @name Blockly.Blocks
  */
 goog.provide('Blockly.Blocks');
 
 /*
- * A mapping of block type names to block prototype objects.
- * @type {!Object.<string,Object>}
+ * A mapping of block type names to block prototype objects. @type {!Object.<string,Object>}
  */
 Blockly.Blocks = Object.create(null);

@@ -19,11 +19,12 @@
  */
 
 /**
- * @fileoverview A class that manages a surface for dragging blocks.  When a
- * block drag is started, we move the block (and children) to a separate DOM
- * element that we move around using translate3d. At the end of the drag, the
- * blocks are put back in into the SVG they came from. This helps performance by
- * avoiding repainting the entire SVG on every mouse move while dragging blocks.
+ * @fileoverview A class that manages a surface for dragging blocks. When a
+ *               block drag is started, we move the block (and children) to a
+ *               separate DOM element that we move around using translate3d. At
+ *               the end of the drag, the blocks are put back in into the SVG
+ *               they came from. This helps performance by avoiding repainting
+ *               the entire SVG on every mouse move while dragging blocks.
  * @author picklesrus
  */
 
@@ -38,28 +39,32 @@ goog.require('Blockly.utils.dom');
 /**
  * Class for a drag surface for the currently dragged block. This is a separate
  * SVG that contains only the currently moving block, or nothing.
- * @param {!Element} container Containing element.
+ * 
+ * @param {!Element}
+ *            container Containing element.
  * @constructor
  */
 Blockly.BlockDragSurfaceSvg = function(container) {
   /**
-   * @type {!Element}
-   * @private
-   */
+     * @type {!Element}
+     * @private
+     */
   this.container_ = container;
   this.createDom();
 };
 
 /**
  * The SVG drag surface. Set once by Blockly.BlockDragSurfaceSvg.createDom.
+ * 
  * @type {Element}
  * @private
  */
 Blockly.BlockDragSurfaceSvg.prototype.SVG_ = null;
 
 /**
- * This is where blocks live while they are being dragged if the drag surface
- * is enabled.
+ * This is where blocks live while they are being dragged if the drag surface is
+ * enabled.
+ * 
  * @type {Element}
  * @private
  */
@@ -67,23 +72,26 @@ Blockly.BlockDragSurfaceSvg.prototype.dragGroup_ = null;
 
 /**
  * Containing HTML element; parent of the workspace and the drag surface.
+ * 
  * @type {Element}
  * @private
  */
 Blockly.BlockDragSurfaceSvg.prototype.container_ = null;
 
 /**
- * Cached value for the scale of the drag surface.
- * Used to set/get the correct translation during and after a drag.
+ * Cached value for the scale of the drag surface. Used to set/get the correct
+ * translation during and after a drag.
+ * 
  * @type {number}
  * @private
  */
 Blockly.BlockDragSurfaceSvg.prototype.scale_ = 1;
 
 /**
- * Cached value for the translation of the drag surface.
- * This translation is in pixel units, because the scale is applied to the
- * drag group rather than the top-level SVG.
+ * Cached value for the translation of the drag surface. This translation is in
+ * pixel units, because the scale is applied to the drag group rather than the
+ * top-level SVG.
+ * 
  * @type {Blockly.utils.Coordinate}
  * @private
  */
@@ -107,10 +115,11 @@ Blockly.BlockDragSurfaceSvg.prototype.createDom = function() {
 };
 
 /**
- * Set the SVG blocks on the drag surface's group and show the surface.
- * Only one block group should be on the drag surface at a time.
- * @param {!Element} blocks Block or group of blocks to place on the drag
- * surface.
+ * Set the SVG blocks on the drag surface's group and show the surface. Only one
+ * block group should be on the drag surface at a time.
+ * 
+ * @param {!Element}
+ *            blocks Block or group of blocks to place on the drag surface.
  */
 Blockly.BlockDragSurfaceSvg.prototype.setBlocksAndShow = function(blocks) {
   if (this.dragGroup_.childNodes.length) {
@@ -125,9 +134,13 @@ Blockly.BlockDragSurfaceSvg.prototype.setBlocksAndShow = function(blocks) {
 /**
  * Translate and scale the entire drag surface group to the given position, to
  * keep in sync with the workspace.
- * @param {number} x X translation in workspace coordinates.
- * @param {number} y Y translation in workspace coordinates.
- * @param {number} scale Scale of the group.
+ * 
+ * @param {number}
+ *            x X translation in workspace coordinates.
+ * @param {number}
+ *            y Y translation in workspace coordinates.
+ * @param {number}
+ *            scale Scale of the group.
  */
 Blockly.BlockDragSurfaceSvg.prototype.translateAndScaleGroup = function(x, y,
     scale) {
@@ -142,6 +155,7 @@ Blockly.BlockDragSurfaceSvg.prototype.translateAndScaleGroup = function(x, y,
 
 /**
  * Translate the drag surface's SVG based on its internal state.
+ * 
  * @private
  */
 Blockly.BlockDragSurfaceSvg.prototype.translateSurfaceInternal_ = function() {
@@ -158,12 +172,15 @@ Blockly.BlockDragSurfaceSvg.prototype.translateSurfaceInternal_ = function() {
 };
 
 /**
- * Translate the entire drag surface during a drag.
- * We translate the drag surface instead of the blocks inside the surface
- * so that the browser avoids repainting the SVG.
- * Because of this, the drag coordinates must be adjusted by scale.
- * @param {number} x X translation for the entire surface.
- * @param {number} y Y translation for the entire surface.
+ * Translate the entire drag surface during a drag. We translate the drag
+ * surface instead of the blocks inside the surface so that the browser avoids
+ * repainting the SVG. Because of this, the drag coordinates must be adjusted by
+ * scale.
+ * 
+ * @param {number}
+ *            x X translation for the entire surface.
+ * @param {number}
+ *            y Y translation for the entire surface.
  */
 Blockly.BlockDragSurfaceSvg.prototype.translateSurface = function(x, y) {
   this.surfaceXY_ = new Blockly.utils.Coordinate(x * this.scale_, y * this.scale_);
@@ -171,8 +188,9 @@ Blockly.BlockDragSurfaceSvg.prototype.translateSurface = function(x, y) {
 };
 
 /**
- * Reports the surface translation in scaled workspace coordinates.
- * Use this when finishing a drag to return blocks to the correct position.
+ * Reports the surface translation in scaled workspace coordinates. Use this
+ * when finishing a drag to return blocks to the correct position.
+ * 
  * @return {!Blockly.utils.Coordinate} Current translation of the surface.
  */
 Blockly.BlockDragSurfaceSvg.prototype.getSurfaceTranslation = function() {
@@ -183,6 +201,7 @@ Blockly.BlockDragSurfaceSvg.prototype.getSurfaceTranslation = function() {
 /**
  * Provide a reference to the drag group (primarily for
  * BlockSvg.getRelativeToSurfaceXY).
+ * 
  * @return {Element} Drag surface group element.
  */
 Blockly.BlockDragSurfaceSvg.prototype.getGroup = function() {
@@ -190,10 +209,11 @@ Blockly.BlockDragSurfaceSvg.prototype.getGroup = function() {
 };
 
 /**
- * Get the current blocks on the drag surface, if any (primarily
- * for BlockSvg.getRelativeToSurfaceXY).
- * @return {!Element|undefined} Drag surface block DOM element, or undefined
- * if no blocks exist.
+ * Get the current blocks on the drag surface, if any (primarily for
+ * BlockSvg.getRelativeToSurfaceXY).
+ * 
+ * @return {!Element|undefined} Drag surface block DOM element, or undefined if
+ *         no blocks exist.
  */
 Blockly.BlockDragSurfaceSvg.prototype.getCurrentBlock = function() {
   return this.dragGroup_.firstChild;
@@ -201,12 +221,13 @@ Blockly.BlockDragSurfaceSvg.prototype.getCurrentBlock = function() {
 
 /**
  * Clear the group and hide the surface; move the blocks off onto the provided
- * element.
- * If the block is being deleted it doesn't need to go back to the original
- * surface, since it would be removed immediately during dispose.
- * @param {Element=} opt_newSurface Surface the dragging blocks should be moved
- *     to, or null if the blocks should be removed from this surface without
- *     being moved to a different surface.
+ * element. If the block is being deleted it doesn't need to go back to the
+ * original surface, since it would be removed immediately during dispose.
+ * 
+ * @param {Element=}
+ *            opt_newSurface Surface the dragging blocks should be moved to, or
+ *            null if the blocks should be removed from this surface without
+ *            being moved to a different surface.
  */
 Blockly.BlockDragSurfaceSvg.prototype.clearAndHide = function(opt_newSurface) {
   if (opt_newSurface) {

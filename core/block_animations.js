@@ -30,14 +30,16 @@ goog.require('Blockly.utils.dom');
 
 
 /**
- * PID of disconnect UI animation.  There can only be one at a time.
+ * PID of disconnect UI animation. There can only be one at a time.
+ * 
  * @type {number}
  * @private
  */
 Blockly.blockAnimations.disconnectPid_ = 0;
 
 /**
- * SVG group of wobbling block.  There can only be one at a time.
+ * SVG group of wobbling block. There can only be one at a time.
+ * 
  * @type {Element}
  * @private
  */
@@ -45,7 +47,9 @@ Blockly.blockAnimations.disconnectGroup_ = null;
 
 /**
  * Play some UI effects (sound, animation) when disposing of a block.
- * @param {!Blockly.BlockSvg} block The block being disposed of.
+ * 
+ * @param {!Blockly.BlockSvg}
+ *            block The block being disposed of.
  * @package
  */
 Blockly.blockAnimations.disposeUiEffect = function(block) {
@@ -67,13 +71,18 @@ Blockly.blockAnimations.disposeUiEffect = function(block) {
 };
 
 /**
- * Animate a cloned block and eventually dispose of it.
- * This is a class method, not an instance method since the original block has
- * been destroyed and is no longer accessible.
- * @param {!Element} clone SVG element to animate and dispose of.
- * @param {boolean} rtl True if RTL, false if LTR.
- * @param {!Date} start Date of animation's start.
- * @param {number} workspaceScale Scale of workspace.
+ * Animate a cloned block and eventually dispose of it. This is a class method,
+ * not an instance method since the original block has been destroyed and is no
+ * longer accessible.
+ * 
+ * @param {!Element}
+ *            clone SVG element to animate and dispose of.
+ * @param {boolean}
+ *            rtl True if RTL, false if LTR.
+ * @param {!Date}
+ *            start Date of animation's start.
+ * @param {number}
+ *            workspaceScale Scale of workspace.
  * @private
  */
 Blockly.blockAnimations.disposeUiStep_ = function(clone, rtl, start,
@@ -96,7 +105,9 @@ Blockly.blockAnimations.disposeUiStep_ = function(clone, rtl, start,
 
 /**
  * Play some UI effects (sound, ripple) after a connection has been established.
- * @param {!Blockly.BlockSvg} block The block being connected.
+ * 
+ * @param {!Blockly.BlockSvg}
+ *            block The block being connected.
  * @package
  */
 Blockly.blockAnimations.connectionUiEffect = function(block) {
@@ -132,9 +143,13 @@ Blockly.blockAnimations.connectionUiEffect = function(block) {
 
 /**
  * Expand a ripple around a connection.
- * @param {!Element} ripple Element to animate.
- * @param {!Date} start Date of animation's start.
- * @param {number} scale Scale of workspace.
+ * 
+ * @param {!Element}
+ *            ripple Element to animate.
+ * @param {!Date}
+ *            start Date of animation's start.
+ * @param {number}
+ *            scale Scale of workspace.
  * @private
  */
 Blockly.blockAnimations.connectionUiStep_ = function(ripple, start, scale) {
@@ -152,7 +167,9 @@ Blockly.blockAnimations.connectionUiStep_ = function(ripple, start, scale) {
 
 /**
  * Play some UI effects (sound, animation) when disconnecting a block.
- * @param {!Blockly.BlockSvg} block The block being disconnected.
+ * 
+ * @param {!Blockly.BlockSvg}
+ *            block The block being disconnected.
  * @package
  */
 Blockly.blockAnimations.disconnectUiEffect = function(block) {
@@ -174,9 +191,13 @@ Blockly.blockAnimations.disconnectUiEffect = function(block) {
 };
 /**
  * Animate a brief wiggle of a disconnected block.
- * @param {!Element} group SVG element to animate.
- * @param {number} magnitude Maximum degrees skew (reversed for RTL).
- * @param {!Date} start Date of animation's start.
+ * 
+ * @param {!Element}
+ *            group SVG element to animate.
+ * @param {number}
+ *            magnitude Maximum degrees skew (reversed for RTL).
+ * @param {!Date}
+ *            start Date of animation's start.
  * @private
  */
 Blockly.blockAnimations.disconnectUiStep_ = function(group, magnitude, start) {
@@ -202,6 +223,7 @@ Blockly.blockAnimations.disconnectUiStep_ = function(group, magnitude, start) {
 
 /**
  * Stop the disconnect UI animation immediately.
+ * 
  * @package
  */
 Blockly.blockAnimations.disconnectUiStop = function() {

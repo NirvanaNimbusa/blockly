@@ -28,53 +28,56 @@ goog.provide('Blockly.FlyoutDragger');
 
 goog.require('Blockly.WorkspaceDragger');
 
-
 /**
- * Class for a flyout dragger.  It moves a flyout workspace around when it is
- * being dragged by a mouse or touch.
- * Note that the workspace itself manages whether or not it has a drag surface
- * and how to do translations based on that.  This simply passes the right
- * commands based on events.
- * @param {!Blockly.Flyout} flyout The flyout to drag.
+ * Class for a flyout dragger. It moves a flyout workspace around when it is
+ * being dragged by a mouse or touch. Note that the workspace itself manages
+ * whether or not it has a drag surface and how to do translations based on
+ * that. This simply passes the right commands based on events.
+ * 
+ * @param {!Blockly.Flyout}
+ *            flyout The flyout to drag.
  * @constructor
  */
 Blockly.FlyoutDragger = function(flyout) {
-  Blockly.FlyoutDragger.superClass_.constructor.call(this,
-      flyout.getWorkspace());
+    Blockly.FlyoutDragger.superClass_.constructor.call(this, flyout.getWorkspace());
 
-  /**
-   * The scrollbar to update to move the flyout.
-   * Unlike the main workspace, the flyout has only one scrollbar, in either the
-   * horizontal or the vertical direction.
-   * @type {!Blockly.Scrollbar}
-   * @private
-   */
-  this.scrollbar_ = flyout.scrollbar_;
+    /**
+     * The scrollbar to update to move the flyout. Unlike the main workspace,
+     * the flyout has only one scrollbar, in either the horizontal or the
+     * vertical direction.
+     * 
+     * @type {!Blockly.Scrollbar}
+     * @private
+     */
+    this.scrollbar_ = flyout.scrollbar_;
 
-  /**
-   * Whether the flyout scrolls horizontally.  If false, the flyout scrolls
-   * vertically.
-   * @type {boolean}
-   * @private
-   */
-  this.horizontalLayout_ = flyout.horizontalLayout_;
+    /**
+     * Whether the flyout scrolls horizontally. If false, the flyout scrolls
+     * vertically.
+     * 
+     * @type {boolean}
+     * @private
+     */
+    this.horizontalLayout_ = flyout.horizontalLayout_;
 };
 goog.inherits(Blockly.FlyoutDragger, Blockly.WorkspaceDragger);
 
 /**
- * Move the appropriate scrollbar to drag the flyout.
- * Since flyouts only scroll in one direction at a time, this will discard one
- * of the calculated values.
- * x and y are in pixels.
- * @param {number} x The new x position to move the scrollbar to.
- * @param {number} y The new y position to move the scrollbar to.
+ * Move the appropriate scrollbar to drag the flyout. Since flyouts only scroll
+ * in one direction at a time, this will discard one of the calculated values. x
+ * and y are in pixels.
+ * 
+ * @param {number}
+ *            x The new x position to move the scrollbar to.
+ * @param {number}
+ *            y The new y position to move the scrollbar to.
  * @private
  */
 Blockly.FlyoutDragger.prototype.updateScroll_ = function(x, y) {
-  // Move the scrollbar and the flyout will scroll automatically.
-  if (this.horizontalLayout_) {
-    this.scrollbar_.set(x);
-  } else {
-    this.scrollbar_.set(y);
-  }
+    // Move the scrollbar and the flyout will scroll automatically.
+    if (this.horizontalLayout_) {
+        this.scrollbar_.set(x);
+    } else {
+        this.scrollbar_.set(y);
+    }
 };

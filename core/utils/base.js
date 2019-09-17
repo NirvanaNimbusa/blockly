@@ -30,9 +30,7 @@
  */
 goog.provide('Blockly.utils.base');
 
-
 /**
  * Reference to the global object.
  */
 Blockly.utils.global = this || self;
-

@@ -29,64 +29,69 @@ goog.provide('Blockly.Events.FinishedLoading');
 goog.require('Blockly.Events');
 goog.require('Blockly.Events.Abstract');
 
-
 /**
- * Class for a finished loading event.
- * Used to notify the developer when the workspace has finished loading (i.e
- * domToWorkspace).
- * Finished loading events do not record undo or redo.
- * @param {!Blockly.Workspace} workspace The workspace that has finished
- *    loading.
+ * Class for a finished loading event. Used to notify the developer when the
+ * workspace has finished loading (i.e domToWorkspace). Finished loading events
+ * do not record undo or redo.
+ * 
+ * @param {!Blockly.Workspace}
+ *            workspace The workspace that has finished loading.
  * @constructor
  */
 Blockly.Events.FinishedLoading = function(workspace) {
-  /**
-   * The workspace identifier for this event.
-   * @type {string}
-   */
-  this.workspaceId = workspace.id;
+    /**
+     * The workspace identifier for this event.
+     * 
+     * @type {string}
+     */
+    this.workspaceId = workspace.id;
 
-  /**
-   * The event group id for the group this event belongs to. Groups define
-   * events that should be treated as an single action from the user's
-   * perspective, and should be undone together.
-   * @type {string}
-   */
-  this.group = Blockly.Events.group_;
+    /**
+     * The event group id for the group this event belongs to. Groups define
+     * events that should be treated as an single action from the user's
+     * perspective, and should be undone together.
+     * 
+     * @type {string}
+     */
+    this.group = Blockly.Events.group_;
 
-  // Workspace events do not undo or redo.
-  this.recordUndo = false;
+    // Workspace events do not undo or redo.
+    this.recordUndo = false;
 };
 goog.inherits(Blockly.Events.FinishedLoading, Blockly.Events.Abstract);
 
 /**
  * Type of this event.
+ * 
  * @type {string}
  */
 Blockly.Events.FinishedLoading.prototype.type = Blockly.Events.FINISHED_LOADING;
 
 /**
  * Encode the event as JSON.
+ * 
  * @return {!Object} JSON representation.
  */
 Blockly.Events.FinishedLoading.prototype.toJson = function() {
-  var json = {
-    'type': this.type,
-  };
-  if (this.group) {
-    json['group'] = this.group;
-  }
-  if (this.workspaceId) {
-    json['workspaceId'] = this.workspaceId;
-  }
-  return json;
+    var json = {
+        'type' : this.type,
+    };
+    if (this.group) {
+        json['group'] = this.group;
+    }
+    if (this.workspaceId) {
+        json['workspaceId'] = this.workspaceId;
+    }
+    return json;
 };
 
 /**
  * Decode the JSON event.
- * @param {!Object} json JSON representation.
+ * 
+ * @param {!Object}
+ *            json JSON representation.
  */
 Blockly.Events.FinishedLoading.prototype.fromJson = function(json) {
-  this.workspaceId = json['workspaceId'];
-  this.group = json['group'];
+    this.workspaceId = json['workspaceId'];
+    this.group = json['group'];
 };
